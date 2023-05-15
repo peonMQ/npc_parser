@@ -1,0 +1,63 @@
+name: Continuous Delivery - Ghost in the Shell LUA
+
+on:
+  release:
+    types: [published]
+
+env:
+  PROJECT: "npc_parser"
+
+jobs:
+  release:
+    runs-on: windows-latest
+    env:
+      BUNDLE_FILE_NAME: "npc_parser.zip"
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v3
+      with:
+        submodules: recursive
+
+    - name: Create Bundle  
+      shell: pwsh
+      run: |
+        $excludeDirs = @('.github','.vscode','definitions','utils','broadcast')
+        $releaseDir = $env:PROJECT + "\"
+        $Directories = Get-ChildItem -Directory "." -Exclude $excludeDirs 
+
+        function CopyReleaseContents($parentDir, $directories) {
+          foreach($dir in $directories) {
+            $currentDir = ($parentDir + $dir.Name + "\")
+            $childReleaseDir = ($releaseDir + $currentDir)
+            New-Item -Path $childReleaseDir -ItemType Directory
+            Copy ($currentDir + "*.lua") $childReleaseDir 
+
+
+            $ChildDirectories = Get-ChildItem -Directory $currentDir 
+            CopyReleaseContents ($currentDir+"\") $ChildDirectories
+          }
+        }
+
+        New-Item -Path $releaseDir -ItemType Directory
+        Copy "*.lua" $releaseDir
+        CopyReleaseContents '.\' $Directories
+
+        function CopyLib($libDirectory) {
+            New-Item -Path ($releaseDir + "/" + $libDirectory)  -ItemType Directory
+            Copy ($libDirectory + "/*.lua") ($releaseDir + "/" + $libDirectory) 
+        }
+
+        CopyLib("utils")
+        CopyLib("utils/loaders")
+        CopyLib("broadcast")
+
+        7z a -tzip $env:BUNDLE_FILE_NAME -r ($env:PROJECT + "/*.lua")
+
+    - name: Publish
+      uses: softprops/action-gh-release@v1
+      with:
+        files: gm.zip
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+# https://github.com/marketplace/actions/easy-zip-files        
