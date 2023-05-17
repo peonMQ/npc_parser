@@ -1,7 +1,7 @@
 local mq = require 'mq'
 
 local zoneSpawns = mq.getFilteredSpawns(function (spawn)
-  return spawn.Type() == "NPC" and spawn.Aggressive() == false
+  return spawn.Type() == "NPC" and spawn.Aggressive() == false and spawn.Body() ~= "Construct"
 end)
 
 local state = {
