@@ -8,6 +8,17 @@ local repository = require('repository')
 
 plugins.EnsureIsLoaded("mq2nav")
 
+local args = {...}
+local radius = nil
+if next(args) then
+  radius = tonumber(args[1])
+  logger.Debug("Attempting to parse NPC's in a %d radius", radius)
+else
+  logger.Debug("Attempting to parse NPC's zonewide")
+end
+
+state.init(radius)
+
 local function ensureTarget(targetId)
   if not targetId then
     logger.Debug("Invalid <targetId>")
