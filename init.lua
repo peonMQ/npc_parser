@@ -63,7 +63,7 @@ while next(state.zoneSpawns) do
       logger.Error("Unable to naviaget to NPC <%s>[%d]", nearest.Name(), nearest.ID())
     end
 
-    local npcLoggerEvent = mqevent:new(nearest.ID().."say", nearest.CleanName().." says #*#", function (line) parseLine(line) end)
+    local npcLoggerEvent = mqevent:new(nearest.ID().."_event", nearest.CleanName().." #*#", function (line) parseLine(line) end)
     npcLoggerEvent:Register()
 
     mq.delay(100)
