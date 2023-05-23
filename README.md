@@ -8,11 +8,13 @@ LUA script that attempts to log NPC dialogue to a SQLLite database.
 - MQ2Lua
 
 ## Installation
-Download the latest `npc_parser.zip` from the latest [release](https://github.com/peonMQ/npc_parser/releases) and unzip the contents to the `lua` folder of your MQ directory.
+Download the latest `npc_parser.zip` from the latest [release](https://github.com/peonMQ/npc_parser/releases) and unzip the contents to its own directory inside `lua` folder of your MQ directory. 
+
+ie `lua\npc_parser`
 
 ## Usage
 
-Start the application by running the following command in-game.
+Start the application by running the following command in-game (using the foldername inside the lua folder as the scriptname to start).
 ```bash
 /lua run npc_parser
 ```
