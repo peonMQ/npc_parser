@@ -11,7 +11,7 @@ jobs:
   release:
     runs-on: windows-latest
     env:
-      BUNDLE_FILE_NAME: "npc_parser.zip"
+      BUNDLE_FILE_NAME: "npc_recorder.zip"
     steps:
     - name: Checkout
       uses: actions/checkout@v3
@@ -55,7 +55,7 @@ jobs:
     - name: Publish
       uses: softprops/action-gh-release@v1
       with:
-        files: npc_parser.zip
+        files: npc_recorder.zip
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 

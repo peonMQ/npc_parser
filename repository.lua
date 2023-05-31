@@ -7,7 +7,7 @@ local sqlite3 = packageMan.Require('lsqlite3')
 local configDir = (mq.configDir.."/"):gsub("\\", "/"):gsub("%s+", "%%20")
 local serverName = mq.TLO.MacroQuest.Server()
 fileUtil.EnsurePathExists(configDir..serverName.."/data")
-local dbFileName = configDir..serverName.."/data/npc_quest_parser.db"
+local dbFileName = configDir..serverName.."/data/npc_recorder.db"
 local connectingString = string.format("file:///%s?cache=shared&mode=rwc&_journal_mode=WAL", dbFileName)
 local db = sqlite3.open(connectingString, sqlite3.OPEN_READWRITE + sqlite3.OPEN_CREATE + sqlite3.OPEN_URI)
 

@@ -2,12 +2,17 @@ local mq = require 'mq'
 local logger = require 'utils/logging'
 local luapaths = require('utils/lua-paths')
 
+local constants = require 'constants'
 
 local state = {
+  isActive = nil,
+  recordType = constants.RecordTypes.Active,
   currentKeyword = nil,
+  radius = 0,
   keywords = {},
   zoneKeywords = {},
-  zoneSpawns = {}
+  zoneSpawns = {},
+  activePID = nil
 }
 
 ---@type RunningDir
@@ -69,7 +74,7 @@ state.resetKeywords = function()
 end
 
 state.init = function(radius)
-  if radius then
+  if radius and radius > 0 and radius < 10000 then
     state.zoneSpawns = mq.getFilteredSpawns(function (spawn)
         return spawn.Type() == "NPC" and spawn.Aggressive() == false and spawn.Body() ~= "Construct" and spawn.Distance() < radius
       end)

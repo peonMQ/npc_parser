@@ -20,7 +20,7 @@ Start the application by running the following command in-game (using the folder
 ```
 
 ### SQLLite DB
-The NPC dialogue will be written to an SQLLite DB located at `{MQConfigDir}\{ServerName}\data\npc_quest_parser.db`
+The NPC dialogue will be written to an SQLLite DB located at `{MQConfigDir}\{ServerName}\data\npc_recorder.db`
 
 
 ### Logging
