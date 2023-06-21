@@ -1,6 +1,6 @@
 local mq = require 'mq'
-local packageMan = require('mq/packageman')
-local fileUtil = require('utils/file')
+local packageMan = require 'mq/packageman'
+local fileUtil = require 'utils/file'
 
 local sqlite3 = packageMan.Require('lsqlite3')
 

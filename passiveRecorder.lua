@@ -1,9 +1,9 @@
 local mq = require 'mq'
 local logger = require 'utils/logging'
 local debugUtils = require 'utils/debug'
-local mqevent = require('mqevent')
-local state = require('state')
-local repository = require('repository')
+local mqevent = require 'mqevent'
+local state = require 'state'
+local repository = require 'repository'
 
 ---@param line string
 ---@param spawn spawn

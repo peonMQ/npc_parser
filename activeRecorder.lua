@@ -1,10 +1,10 @@
 local mq = require 'mq'
 local logger = require 'utils/logging'
 local debugUtils = require 'utils/debug'
-local plugins = require('utils/plugins')
-local mqevent = require('mqevent')
-local state = require('state')
-local repository = require('repository')
+local plugins = require 'utils/plugins'
+local mqevent = require 'mqevent'
+local state = require 'state'
+local repository = require 'repository'
 
 plugins.EnsureIsLoaded("mq2nav")
 

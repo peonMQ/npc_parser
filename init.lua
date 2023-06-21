@@ -5,7 +5,7 @@ local icons = require 'mq/icons'
 local logger = require 'utils/logging'
 local plugins = require 'utils/plugins'
 local luapaths = require 'utils/lua-paths'
-local luaUtils = require('utils/lua-table')
+local luaUtils = require 'utils/lua-table'
 
 local mqevent = require 'mqevent'
 local constants = require 'constants'

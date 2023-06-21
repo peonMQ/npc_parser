@@ -1,6 +1,6 @@
 local mq = require 'mq'
 local logger = require 'utils/logging'
-local luapaths = require('utils/lua-paths')
+local luapaths = require 'utils/lua-paths'
 
 local constants = require 'constants'
 
